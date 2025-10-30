@@ -2,10 +2,14 @@ import streamlit as st
 from datetime import date
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import os, json
+from dotenv import load_dotenv
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credientials.json", scope)
+load_dotenv()
+creds_json = os.getenv("MY_APP_CRED")
+creds = ServiceAccountCredentials.from_json(json.loads(creds_json))
 client = gspread.authorize(creds)
 
 # Open Google Sheet by name
