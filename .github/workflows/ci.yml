@@ -14,5 +14,7 @@ jobs:
       - name: Run tests
         env:
           MY_APP_CRED: ${{ secrets.MY_APP_CRED }}
+          #print secret.MY_APP_CRED to verify it's passed correctly
+          echo "MY_APP_CRED: $MY_APP_CRED"
         run: |
           node ./scripts/use_creds.js
