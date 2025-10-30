@@ -4,13 +4,14 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os, json
 from dotenv import load_dotenv
+import scripts.use_creds
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 load_dotenv()
 creds_json = os.getenv("MY_APP_CRED")
 st.warning(creds_json)
-creds = ServiceAccountCredentials.from_json_keyfile_name("credientials.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(scripts.use_creds.creds, scope)
 client = gspread.authorize(creds)
 
 # Open Google Sheet by name

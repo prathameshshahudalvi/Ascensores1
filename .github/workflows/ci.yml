@@ -16,5 +16,7 @@ jobs:
           MY_APP_CRED: ${{ secrets.MY_APP_CRED }}
           #print secret.MY_APP_CRED to verify it's passed correctly
           echo "MY_APP_CRED: $MY_APP_CRED"
+          MY_APP_CRED_1: ${{ vars.MY_APP_CRED_1 }}
+          echo "MY_APP_CRED_1: $MY_APP_CRED_1"
         run: |
-          node ./scripts/use_creds.js
+          python ./scripts/use_creds.py
