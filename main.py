@@ -9,7 +9,10 @@ from dotenv import load_dotenv
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 load_dotenv()
 creds_json = os.getenv("MY_APP_CRED")
-creds = ServiceAccountCredentials.from_json(json.loads(creds_json))
+if isinstance(creds_json, str):
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(creds_json))
+else:
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json)
 client = gspread.authorize(creds)
 
 # Open Google Sheet by name
