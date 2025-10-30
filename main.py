@@ -18,8 +18,10 @@ st.warning(creds_json_2)
 if creds_json is None:
     raise ValueError("❌ MY_APP_CRED environment variable not set!")
 
-creds_dict = json.loads(creds_json)
-creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict)
+st.warning(creds_json)
+
+# creds_dict = json.load(creds_json)
+creds = ServiceAccountCredentials.from_json_keyfile_name("credientials.json", scope)
 client = gspread.authorize(creds)
 
 # Open Google Sheet by name
