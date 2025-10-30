@@ -20,8 +20,8 @@ if creds_json is None:
 
 st.warning(creds_json)
 
-# creds_dict = json.load(creds_json)
-creds = ServiceAccountCredentials.from_json_keyfile_name("credientials.json", scope)
+creds_dict = json.load(creds_json)
+creds = ServiceAccountCredentials.from_json_keyfile_name(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Open Google Sheet by name
