@@ -4,16 +4,28 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os, json
 from dotenv import load_dotenv
-import scripts.use_creds
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 load_dotenv()
 creds_json = os.getenv("MY_APP_CRED")
-st.warning(creds_json)
-st.warning(scripts.use_creds.creds)
-creds = ServiceAccountCredentials.from_json_keyfile_name(scripts.use_creds.creds, scope)
-client = gspread.authorize(creds)
+
+try:
+    if creds_json:
+        # Parse the JSON credentials from environment variable
+        creds_dict = json.loads(creds_json)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        client = gspread.authorize(creds)
+        st.success("✅ Credentials loaded successfully!")
+    else:
+        st.error("❌ MY_APP_CRED environment variable not found!")
+        st.stop()
+except json.JSONDecodeError as e:
+    st.error(f"❌ Error parsing credentials JSON: {e}")
+    st.stop()
+except Exception as e:
+    st.error(f"❌ Error connecting to Google Sheets: {e}")
+    st.stop()
 
 # Open Google Sheet by name
 # Open Google Sheet by ID (manual method)
@@ -71,3 +83,9 @@ with st.form("site_job_form"):
         st.write(f"**Installation Date:** {installation_date.strftime('%B %d, %Y')}")
         st.write(f"**Removal Date:** {removal_date.strftime('%B %d, %Y')}")
         st.write(f"**Site Engineer (Removal):** {removal_engineer}")
+
+
+def setCredentials(creds_env_var):
+    global creds_2
+    creds_2 = creds_env_var
+    st.success("✅ Credentials set in main module successfully!")
