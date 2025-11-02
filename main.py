@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 load_dotenv()
-creds_json = os.getenv("TEST_1")
-creds_json_1 = os.getenv("TEST_2")
+creds_json = st.secrets["api"]["TEST_1"]
+creds_json_1 = st.secrets["api"]["TEST_2"]
 # creds_json_2 = os.getenv("MY_APP_CRED_1")
 
 st.warning(creds_json)
