@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Streamlit app using secrets
         env:
-          MY_APP_CRED: ${{ secrets.MY_APP_CRED }}
-          MY_APP_CRED_1: ${{ vars.MY_APP_CRED_1 }}
+          creds_json: ${{ secrets.TEST_1 }}
+          creds_json_1: ${{ vars.TEST_2 }}
         run: |
           python main.py
