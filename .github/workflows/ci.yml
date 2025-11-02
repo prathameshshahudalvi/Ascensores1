@@ -28,4 +28,4 @@ jobs:
           creds_json: ${{ secrets.TEST_1 }}
           creds_json_1: ${{ vars.TEST_2 }}
         run: |
-          python main.py
+          streamlit run main.py
