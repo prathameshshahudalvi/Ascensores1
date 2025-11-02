@@ -10,9 +10,11 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 
 load_dotenv()
 creds_json = os.getenv("TEST_1")
+creds_json_1 = os.getenv("TEST_2")
 # creds_json_2 = os.getenv("MY_APP_CRED_1")
 
 st.warning(creds_json)
+st.warning(creds_json_1)
 # st.warning(creds_json_2)
 
 # if creds_json is None:
