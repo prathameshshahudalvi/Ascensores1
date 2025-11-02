@@ -9,14 +9,14 @@ from dotenv import load_dotenv
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 load_dotenv()
-creds_json = os.getenv("MY_APP_CRED")
-creds_json_2 = os.getenv("MY_APP_CRED_1")
+creds_json = os.getenv("TEST_1")
+# creds_json_2 = os.getenv("MY_APP_CRED_1")
 
 st.warning(creds_json)
-st.warning(creds_json_2)
+# st.warning(creds_json_2)
 
-if creds_json is None:
-    raise ValueError("❌ MY_APP_CRED environment variable not set!")
+# if creds_json is None:
+#     raise ValueError("❌ MY_APP_CRED environment variable not set!")
 
 # st.warning(creds_json)
 
